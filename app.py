@@ -90,7 +90,7 @@ st.header("InsightGen: AI-Powered Feedback Summarizer", divider="gray")
 
 st.subheader(productNames[k])
 
-st.link_button("Link to Amazon Page", productLinks[k], icon=":material/thumb_up:")
+st.link_button("Link to Amazon Page", productLinks[k], icon=":material/link:")
 
 with st.form("form"):
    user_input = st.text_area(
