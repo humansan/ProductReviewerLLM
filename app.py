@@ -30,7 +30,7 @@ options = ["Alarm Clock Radio", "Headphones", "Ice Maker", "Washing Machine"]
 
 productNames = ["Sangean Digital Clock Radio", "Audio-Technica Headphones", "Frigidaire Ice Machine", "WonderWash Portable Washing Machine"]
 
-productLinks = ["https://www.amazon.com/Sangean-RCR-5-Digital-Clock-Radio/dp/B0016CWV3U?th=1", "https://www.amazon.com/Frigidaire-EFIC103-Machine-Icemaker-Stainless/dp/B004VV8GOQ", "https://www.amazon.com/Audio-Technica-ATH-M30-Closed-Back-Headphones/dp/B00007E7C8", "https://www.amazon.com/WonderWash-Portable-Washing-Machine-Apartment/dp/B002C8HR9A"]
+productLinks = ["https://www.amazon.com/Sangean-RCR-5-Digital-Clock-Radio/dp/B0016CWV3U?th=1", "https://www.amazon.com/Audio-Technica-ATH-M30-Closed-Back-Headphones/dp/B00007E7C8", "https://www.amazon.com/Frigidaire-EFIC103-Machine-Icemaker-Stainless/dp/B004VV8GOQ",  "https://www.amazon.com/WonderWash-Portable-Washing-Machine-Apartment/dp/B002C8HR9A"]
 
 
 
