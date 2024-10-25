@@ -26,6 +26,13 @@ g_embed = GoogleGenerativeAIEmbeddings(model = "models/text-embedding-004")
 
 
 filenames = ["AlarmClock", "Headphones", "IceBucket", "WashingMachine"]
+options = ["Alarm Clock Radio", "Headphones", "Ice Maker", "Washing Machine"]
+
+productNames = ["Sangean Digital Clock Radio", "Audio-Technica Headphones", "Frigidaire Ice Machine", "WonderWash Portable Washing Machine"]
+
+productLinks = ["https://www.amazon.com/Sangean-RCR-5-Digital-Clock-Radio/dp/B0016CWV3U?th=1", "https://www.amazon.com/Frigidaire-EFIC103-Machine-Icemaker-Stainless/dp/B004VV8GOQ", "https://www.amazon.com/Audio-Technica-ATH-M30-Closed-Back-Headphones/dp/B00007E7C8", "https://www.amazon.com/WonderWash-Portable-Washing-Machine-Apartment/dp/B002C8HR9A"]
+
+
 
 docs=[]
 descriptions = []
@@ -64,8 +71,26 @@ for file in filenames:
 #model = genai.GenerativeModel("gemini-1.5-flash")
 
 
-st.title("InsightGen: AI-Powered Feedback Summarizer")
+k = 0
+product = st.sidebar.radio("Product", options)
 
+sentimentBool = st.sidebar.checkbox("Use Sentiment Analysis")
+
+if product == "Alarm Clock Radio":
+    k = 0
+if product == "Headphones":
+    k = 1
+if product == "Ice Maker":
+    k = 2
+if product == "Washing Machine":
+    k = 3
+
+
+st.header("InsightGen: AI-Powered Feedback Summarizer", divider="gray")
+
+st.subheader(productNames[k])
+
+st.link_button("Link to Amazon Page", productLinks[k], icon=":material/link")
 
 with st.form("form"):
    user_input = st.text_area(
@@ -73,19 +98,7 @@ with st.form("form"):
    )
    submitted = st.form_submit_button("Enter")
 
-k = 0
-product = st.sidebar.radio("Product", filenames)
 
-sentimentBool = st.sidebar.checkbox("Use Sentiment Analysis")
-
-if product == "AlarmClock":
-    k = 0
-if product == "Headphones":
-    k = 1
-if product == "IceBucket":
-    k = 2
-if product == "WashingMachine":
-    k = 3
 
 if st.button("General Product Summary"):
     if(sentimentBool):
@@ -142,7 +155,7 @@ if(submitted):
             "You are a product analyst."
             "Based on the information in the following product reviews, create a useful "
             "answer to the question about the product. Each review starts with a sentiment analysis statement that tells you if the review is very negative, negative, neutral, positive, or very positive. Positive responses show that the user praised and liked aspects of the product, while negative responses show the user criticized and disliked aspects of the product. These sentiments can differentiate between which aspects were praised and which were criticized. Think about these sentiments and use it to improve your answers. Consider different perspecives and different possibilities." 
-            "Be detailed and give descriptive answers. Write your response directly about the product, not about reviewers."
+            "Be detailed and concise in your answers. Write your response directly about the product, not about reviewers."
             "Here is the product description for this product:" 
             + descriptions[k] +
             "\n\n"
@@ -166,7 +179,7 @@ if(submitted):
             "You are a product analyst."
             "Based on the information in the following product reviews, create a useful "
             "answer to the question about the product. Consider different perspecives and different possibilities." 
-            "Be detailed and give descriptive answers. Write your response objectively and directly about the product."
+            "Be detailed and concise in your answers. Write your response objectively and directly about the product."
             "Here is the product description for this product:" 
             + descriptions[k] +
             "\n\n"
