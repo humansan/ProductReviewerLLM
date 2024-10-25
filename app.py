@@ -74,7 +74,7 @@ for file in filenames:
 k = 0
 product = st.sidebar.radio("Product", options)
 
-sentimentBool = st.sidebar.checkbox("Use Sentiment Analysis")
+sentimentBool = true
 
 if product == "Alarm Clock Radio":
     k = 0
