@@ -26,7 +26,8 @@ g_embed = GoogleGenerativeAIEmbeddings(model = "models/text-embedding-004")
 
 
 filenames = ["AlarmClock", "Headphones", "IceBucket", "WashingMachine"]
-options = ["Alarm Clock Radio", "Headphones", "Ice Maker", "Washing Machine"]
+options = ["Sangean Clock Radio", "Audio-Technica Headphones", "Frigidaire Ice Machine", "WonderWash Washing Machine"]
+
 
 productNames = ["Sangean Digital Clock Radio", "Audio-Technica Headphones", "Frigidaire Ice Machine", "WonderWash Portable Washing Machine"]
 
@@ -76,17 +77,17 @@ product = st.sidebar.radio("Product", options)
 
 sentimentBool = True
 
-if product == "Alarm Clock Radio":
+if product == "Sangean Clock Radio":
     k = 0
-if product == "Headphones":
+if product == "Audio-Technica Headphones":
     k = 1
-if product == "Ice Maker":
+if product == "Frigidaire Ice Machine":
     k = 2
-if product == "Washing Machine":
+if product == "WonderWash Washing Machine":
     k = 3
 
 
-st.header("InsightGen: AI-Powered Feedback Summarizer", divider="gray")
+st.header("ReviewerLLM: AI-Powered Feedback Summarizer", divider="gray")
 
 st.subheader(productNames[k])
 
@@ -114,14 +115,13 @@ if st.button("General Product Summary"):
         prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", system_prompt),
-                ("human", "{input}"),
             ]
         )
 
         question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
         rag_chain = create_retrieval_chain(sentiment_retrievers[k], question_answer_chain)
 
-        response = rag_chain.invoke({'input': user_input})
+        response = rag_chain.invoke()
         st.write(response["answer"])
         
     else:
@@ -137,15 +137,15 @@ if st.button("General Product Summary"):
         prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", system_prompt),
-                ("human", "{input}"),
             ]
         )
 
         question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
-        rag_chain = create_retrieval_chain(retrievers[k], question_answer_chain)
+        rag_chain = create_retrieval_chain(sentiment_retrievers[k], question_answer_chain)
 
-        response = rag_chain.invoke({'input': user_input})
+        response = rag_chain.invoke()
         st.write(response["answer"])
+
 
 
 
