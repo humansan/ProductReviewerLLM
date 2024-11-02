@@ -121,7 +121,7 @@ if st.button("General Product Summary"):
         question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
         rag_chain = create_retrieval_chain(sentiment_retrievers[k], question_answer_chain)
 
-        response = rag_chain.invoke()
+        response = rag_chain.invoke("")
         st.write(response["answer"])
         
     else:
@@ -143,10 +143,8 @@ if st.button("General Product Summary"):
         question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
         rag_chain = create_retrieval_chain(sentiment_retrievers[k], question_answer_chain)
 
-        response = rag_chain.invoke()
+        response = rag_chain.invoke("")
         st.write(response["answer"])
-
-
 
 
 if(submitted):
