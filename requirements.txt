@@ -1,5 +1,6 @@
-langchain-google-genai
 streamlit
+setuptools
+langchain-google-genai
 langchain-community
 langchain-chroma
 langchain
